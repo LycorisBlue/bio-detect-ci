@@ -1,5 +1,8 @@
 {
-  "name": "vite_react_shadcn_ts",
+  "name": "bioguard-bio-detect-ci",
+  "description": "BioGuard Bio Detect CI",
+  "author": "BioGuard Team",
+  "license": "MIT",
   "private": true,
   "version": "0.0.0",
   "type": "module",
