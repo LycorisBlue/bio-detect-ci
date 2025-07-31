@@ -1,137 +1,129 @@
-import { Header } from "@/components/Header";
-import { IdentificationModule } from "@/components/IdentificationModule";
-import { Camera, Leaf } from "lucide-react";
+// src/pages/Index.tsx - Version mise à jour
+import { Camera, Leaf, Sparkles, TreePine, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
+import { SpeciesIdentifier } from "@/components/SpeciesIdentifier";
 import { ivorianSpeciesExtended } from "@/data/species-extended";
+// import { ivorianSpeciesExtended } from "@/data/species";
 
 const Index = () => {
-  // Sélectionner 4 espèces populaires pour l'aperçu
-  const popularSpecies = ivorianSpeciesExtended.slice(0, 4);
-
-  const getRarityColor = (rarity: string) => {
-    switch (rarity) {
-      case 'Commun': return 'bg-green-500';
-      case 'Rare': return 'bg-orange-500';
-      case 'En danger': return 'bg-red-500';
-      default: return 'bg-gray-500';
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main>
-        {/* Section d'identification centrée */}
-        <section className="container mx-auto px-4 py-12">
-          <div className="max-w-4xl mx-auto text-center">
-            {/* Titre principal épuré */}
-            <div className="mb-8">
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-                Découvre la
-                <span className="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
-                  {" "}biodiversité{" "}
-                </span>
-                ivoirienne
-              </h1>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Prends une photo et découvre instantanément les espèces de Côte d'Ivoire
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50">
+      {/* Hero Section avec identification IA */}
+      <section className="container mx-auto px-4 py-12">
+        <div className="text-center mb-8">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="relative">
+              <Leaf className="h-12 w-12 text-primary" />
+              <Sparkles className="h-6 w-6 text-accent absolute -top-2 -right-2 animate-pulse" />
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+              BioGuard Junior
+            </h1>
+          </div>
+
+          <p className="text-xl md:text-2xl text-muted-foreground mb-2 max-w-3xl mx-auto">
+            Découvre et protège la biodiversité ivoirienne avec l'intelligence artificielle
+          </p>
+
+          <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-8">
+            <Heart className="h-4 w-4 text-red-500" />
+            <span>Propulsé par Gemini 2.5 Flash</span>
+          </div>
+        </div>
+
+        {/* Composant d'identification principal */}
+        <SpeciesIdentifier />
+      </section>
+
+      {/* Section éducative */}
+      <section className="bg-white/50 backdrop-blur-sm py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">
+              Pourquoi protéger notre biodiversité ?
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              La Côte d'Ivoire abrite une richesse naturelle extraordinaire. Chaque espèce joue un rôle crucial dans l'équilibre de nos écosystèmes.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="text-center p-6 rounded-xl bg-gradient-to-br from-green-100 to-emerald-100">
+              <TreePine className="h-12 w-12 mx-auto text-green-600 mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Forêts préservées</h3>
+              <p className="text-muted-foreground">
+                Nos forêts sont les poumons de la planète et abritent 80% de la biodiversité terrestre
               </p>
             </div>
 
-            {/* Module d'identification prominent */}
-            <div className="mb-16">
-              <IdentificationModule />
+            <div className="text-center p-6 rounded-xl bg-gradient-to-br from-blue-100 to-cyan-100">
+              <Leaf className="h-12 w-12 mx-auto text-blue-600 mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Espèces protégées</h3>
+              <p className="text-muted-foreground">
+                Chaque espèce est unique et irremplaçable dans la chaîne alimentaire
+              </p>
+            </div>
+
+            <div className="text-center p-6 rounded-xl bg-gradient-to-br from-purple-100 to-pink-100">
+              <Sparkles className="h-12 w-12 mx-auto text-purple-600 mb-4" />
+              <h3 className="text-xl font-semibold mb-2">Avenir durable</h3>
+              <p className="text-muted-foreground">
+                Préserver aujourd'hui pour les générations futures
+              </p>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Aperçu minimal des espèces populaires */}
-        <section className="container mx-auto px-4 py-12 bg-muted/30">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-                Espèces populaires
-              </h2>
-              <p className="text-muted-foreground">
-                Découvre quelques-unes des espèces emblématiques de Côte d'Ivoire
-              </p>
+      {/* Section statistiques */}
+      <section className="container mx-auto px-4 py-16">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-gradient-primary rounded-2xl p-8 text-primary-foreground text-center">
+            <h2 className="text-3xl font-bold mb-6">Notre base de données</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              <div>
+                <div className="text-4xl font-bold text-accent-glow">{ivorianSpeciesExtended.length}</div>
+                <div className="text-primary-foreground/80">Espèces</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-accent-glow">3</div>
+                <div className="text-primary-foreground/80">Parcs nationaux</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-accent-glow">+95%</div>
+                <div className="text-primary-foreground/80">Précision IA</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-accent-glow">∞</div>
+                <div className="text-primary-foreground/80">Apprentissage</div>
+              </div>
             </div>
 
-            {/* Grille des espèces populaires (4 cartes max) */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              {popularSpecies.map((species) => (
-                <Card key={species.id} className="group hover:shadow-lg transition-all duration-300 overflow-hidden">
-                  <div className="aspect-[4/3] bg-muted relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-primary opacity-20" />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Leaf className="h-12 w-12 text-primary opacity-60" />
-                    </div>
-                    <div className="absolute top-2 right-2">
-                      <Badge className={`${getRarityColor(species.rarity)} text-white text-xs`}>
-                        {species.rarity}
-                      </Badge>
-                    </div>
-                  </div>
-
-                  <CardContent className="p-4">
-                    <h3 className="font-semibold text-sm line-clamp-1 mb-1">{species.name}</h3>
-                    <p className="text-xs text-muted-foreground italic mb-2">{species.scientificName}</p>
-                    <p className="text-xs text-foreground line-clamp-2">{species.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            {/* CTA vers le répertoire complet */}
-            <div className="text-center">
+            <div className="mt-8">
               <Link to="/especes">
-                <Button variant="outline" size="lg" className="gap-2">
+                <Button variant="secondary" size="lg" className="gap-2">
                   <Leaf className="h-5 w-5" />
-                  Voir toutes les espèces ({ivorianSpeciesExtended.length})
+                  Explorer toutes les espèces
                 </Button>
               </Link>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Section d'incitation à l'action */}
-        <section className="container mx-auto px-4 py-16">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="bg-gradient-primary rounded-2xl p-8 text-primary-foreground">
-              <Camera className="h-16 w-16 mx-auto mb-4 text-accent-glow" />
-              <h3 className="text-2xl font-bold mb-3">Prêt à identifier ?</h3>
-              <p className="text-primary-foreground/90 mb-6">
-                Chaque photo que tu prends contribue à la protection de notre biodiversité
-              </p>
-              <Button
-                variant="secondary"
-                size="lg"
-                className="gap-2"
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              >
-                <Camera className="h-5 w-5" />
-                Commencer l'identification
-              </Button>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      {/* Footer minimaliste */}
+      {/* Footer */}
       <footer className="bg-primary text-primary-foreground py-8">
         <div className="container mx-auto px-4 text-center">
           <div className="mb-4">
             <h3 className="text-xl font-bold mb-2">BioGuard Junior</h3>
             <p className="text-primary-foreground/80 text-sm">
-              Protégeons ensemble la biodiversité ivoirienne
+              Protégeons ensemble la biodiversité ivoirienne avec l'IA
             </p>
           </div>
           <div className="border-t border-primary-foreground/20 pt-4">
             <p className="text-primary-foreground/60 text-xs">
-              © 2024 BioGuard Junior - Projet BIOGUARD-CI
+              © 2024 BioGuard Junior - Projet BIOGUARD-CI • Propulsé par Gemini 2.5 Flash
             </p>
           </div>
         </div>
